@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesin Kasir</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Header */
+        header {
+            background-color: #007bff; /* Warna biru untuk header */
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a:hover {
+            color: #ccc;
+        }
+
+        /* Input Section */
+        .input-field {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-add {
+            padding: 0.5rem 1rem;
+            background-color: #28a745; /* Warna hijau untuk tombol tambah */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background-color: #218838; /* Warna hijau yang sedikit lebih gelap saat tombol dihover */
+        }
+
+        /* Transaction Details */
+        .transaction-details {
+            margin-bottom: 1.5rem;
+            background-color: #f8f9fa; /* Warna abu-abu muda untuk latar belakang */
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+        }
+
+        /* Total and Change */
+        .total, .kembalian {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: #28a745; /* Warna hijau untuk menyoroti total dan kembalian */
+        }
+
+        /* Download Button */
+        #downloadButton {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff; /* Warna biru untuk tombol unduh */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #downloadButton:hover {
+            background-color: #0056b3; /* Warna biru yang sedikit lebih gelap saat tombol dihover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mesin Kasir</h1>
+        <nav>
+            <ul>
+                <li><a href="cashier.html">Kasir</a></li>
+                <li><a href="stock.html">Stock</a></li>
+                <li><a href="history.html">Riwayat Transaksi</a></li> <!-- Tautan untuk riwayat transaksi -->
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="input-section">
+            <input type="text" placeholder="Nama Barang" id="namaBarang" class="input-field" oninput="updateHarga()">
+            <input type="number" placeholder="Harga" id="hargaBarang" class="input-field" readonly>
+            <input type="number" placeholder="Jumlah" id="jumlahBarang" class="input-field">
+            <button onclick="tambahBarang()" class="btn-add">Tambah</button>
+        </div>
+        <div class="transaction-details">
+            <h2>Detail Transaksi</h2>
+            <table class="transaction-list" id="transactionList">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Daftar transaksi akan ditampilkan di sini -->
+                </tbody>
+            </table>
+            <div class="total">Total: <span id="total"></span></div>
+        </div>
+        <div class="payment-section">
+            <input type="number" placeholder="Uang Dibayarkan" id="uangDibayarkan" class="input-field">
+            <button onclick="hitungKembalian()" class="btn-add">Hitung Kembalian</button>
+            <div>Kembalian: <span id="kembalian"></span></div>
+        </div>
+        <button onclick="simpanTransaksi()" class="btn-add">Simpan Transaksi</button>
+
+        <!-- Tombol untuk mengunduh riwayat transaksi -->
+        <button id="downloadButton">Unduh Riwayat Transaksi</button>
+
+    </div>
+
+    <script src="cashier.js"></script>
+</body>
+</html>

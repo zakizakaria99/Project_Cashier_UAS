@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Barang</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Stock Barang</h1>
+        <nav>
+            <ul>
+                <li><a href="cashier.html">Kasir</a></li>
+                <li><a href="stock.html">Stock</a></li>
+                <li><a href="history.html">Riwayat Transaksi</a></li> <!-- Tautan untuk riwayat transaksi -->
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="input-section">
+            <form id="stockForm">
+                <input type="text" placeholder="Nama Barang" id="namaBarang" class="input-field">
+                <input type="number" placeholder="Harga" id="hargaBarang" class="input-field">
+                <select id="jenisBarang" class="input-field">
+                    <option value="makanan">Makanan</option>
+                    <option value="minuman">Minuman</option>
+                </select>
+                <input type="number" placeholder="Stock" id="stockBarang" class="input-field">
+                <button type="submit" class="btn-add">Tambah</button>
+            </form>
+        </div>
+        <div class="stock-list">
+            <h2>Daftar Stok</h2>
+            <div id="stockList">
+                <!-- Daftar stok akan ditampilkan di sini -->
+            </div>
+        </div>
+    </div>
+
+    <script src="stock.js"></script>
+</body>
+</html>

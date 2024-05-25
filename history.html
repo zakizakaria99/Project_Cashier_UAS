@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Riwayat Transaksi</h1>
+        <nav>
+            <ul>
+                <li><a href="cashier.html">Kasir</a></li>
+                <li><a href="stock.html">Stock</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container" id="riwayatTransaksi">
+        <!-- Daftar riwayat transaksi akan ditampilkan di sini -->
+    </div>
+
+    <script src="history.js"></script>
+    <script>
+       // Fungsi untuk memuat riwayat transaksi saat halaman dimuat
+function loadTransactionHistory() {
+    const riwayatTransaksi = JSON.parse(localStorage.getItem('riwayatTransaksi')) || [];
+    const riwayatTransaksiElement = document.getElementById('riwayatTransaksi');
+
+    if (riwayatTransaksi.length > 0) {
+        riwayatTransaksiElement.innerHTML = ''; // Membersihkan konten sebelum menambahkan riwayat transaksi
+
+        riwayatTransaksi.forEach((transaksi, index) => {
+            const table = document.createElement('table');
+            table.classList.add('transaction-table');
+            table.innerHTML = `
+                <caption>Transaksi ${index + 1}</caption>
+                <thead>
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Total Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${transaksi.transaksi.map(item => `
+                        <tr>
+                            <td>${item.nama}</td>
+                            <td>${item.harga}</td>
+                            <td>${item.jumlah}</td>
+                            <td>${item.total}</td>
+                        </tr>`).join('')}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>Total Harga:</strong></td>
+                        <td>${transaksi.totalHarga}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Uang Dibayarkan:</strong></td>
+                        <td>${transaksi.uangDibayarkan}<td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Kembalian:</strong></td>
+                        <td>${transaksi.kembalian}</td>
+                    </tr>
+                </tfoot>
+            `;
+            riwayatTransaksiElement.appendChild(table);
+        });
+    } else {
+        riwayatTransaksiElement.innerHTML = '<p>Tidak ada riwayat transaksi.</p>';
+    }
+}
+
+// Panggil fungsi untuk memuat riwayat transaksi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', loadTransactionHistory);
+
+    </script>
+</body>
+</html>
